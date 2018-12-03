@@ -3,6 +3,7 @@ const router = express.Router();
 const pizza = require('../service/').pizza;
 
 router.post('/', pizza.getSomething);
+router.get('/', pizza.getAllPizza);
 // router.post('/login', pizza.login);
 // router.post('/sync', pizza.authToken);
 // router.post('/', pizza.insertUser);
