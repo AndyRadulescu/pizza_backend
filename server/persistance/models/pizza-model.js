@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         description: DataTypes.STRING,
         price: DataTypes.DOUBLE,
-        toppings: DataTypes.STRING
+        toppings: DataTypes.STRING,
+        user_uuid: DataTypes.STRING
     }, {
         timestamps: false,
         tableName: "pizza"
@@ -18,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         console.log('association made');
         pizza.hasMany(models.souce, {
             foreignKey: 'pizza_uuid'
+        });
+        pizza.belongsTo(models.user, {
+            foreignKey: 'user_uuid'
         });
     };
 

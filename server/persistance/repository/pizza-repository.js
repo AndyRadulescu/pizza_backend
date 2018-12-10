@@ -18,7 +18,8 @@ module.exports = class PizzaRepository {
                     name: this.pizzaInfo.pizzaName,
                     description: this.pizzaInfo.pizzaDescription,
                     price: this.pizzaInfo.pizzaPrice,
-                    toppings: this.pizzaInfo.toppings
+                    toppings: this.pizzaInfo.toppings,
+                    user_uuid: this.pizzaInfo.user_uuid
                 });
                 this.pizzaInfo.souces.forEach(async (item) => {
                     await Souce.create({
