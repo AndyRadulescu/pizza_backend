@@ -7,23 +7,29 @@ module.exports = class UserRepository {
 
     }
 
-    passwordHashing() {
-        const saltRounds = 10;
-        bcrypt.hash(this.userInfo.password, saltRounds, (err, hash) => {
-            // Store hash in your password DB.
-            this._insertUser(hash);
-        });
-    }
-
     /**
      * @private
      */
-    _insertUser(hash) {
-        User.create({
-            uuid: this.userInfo.uuid,
-            email: this.userInfo.email,
-            phone: this.userInfo.phone,
-            password: hash
-        });
+    _passwordHashing(plainTextPassword) {
+        console.log('ceva')
+        const saltRounds = 10;
+        let salt = bcrypt.genSaltSync(saltRounds);
+        return bcrypt.hashSync(plainTextPassword, salt);
+    }
+
+    async insertUser() {
+        try {
+            await User.create({
+                uuid: this.userInfo.uuid,
+                name: this.userInfo.name,
+                email: this.userInfo.email,
+                phone: this.userInfo.phone,
+                password: this._passwordHashing(this.userInfo.password)
+            });
+            return {success: true};
+        } catch (err) {
+            console.log(err);
+            return {success: false}
+        }
     }
 };

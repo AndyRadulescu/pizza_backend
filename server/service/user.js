@@ -10,6 +10,10 @@ exports.getAllUsers = ((req, res) => {
 exports.insertUser = ((req, res) => {
     console.log(req.body);
     const repo = new UserRepository(req.body);
-    repo.passwordHashing();
-    res.status(200).send("it worked");
+    const success = repo.insertUser();
+    if (success) {
+        res.status(200).send("it worked");
+    } else {
+        res.status(401).send("error");
+    }
 });
