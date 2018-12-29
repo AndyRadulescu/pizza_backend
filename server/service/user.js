@@ -2,7 +2,9 @@ const User = require('../persistance/models').user;
 const UserRepository = require('../persistance/repository/user-repository');
 
 exports.getAllUsers = ((req, res) => {
-    User.findAll().then((users) => {
+    User.findAll({
+        include: [{all: true}]
+    }).then((users) => {
         res.send(users);
     });
 });
