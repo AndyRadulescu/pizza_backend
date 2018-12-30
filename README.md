@@ -16,3 +16,15 @@ docker exec -it postgresdb psql --username postgres -c "DROP DATABASE devdb"
 ```
 **Run all the above comands without the last one (that will erase the database).**
 Then, copy the sql file into your ide and run it, this should create all the database.
+
+In the folder `./backend_pizza/` run: 
+
+```
+npm run start:dev
+```
+To start the nodemon server (development). 
+
+```
+npm run start
+```
+To start the the application.
