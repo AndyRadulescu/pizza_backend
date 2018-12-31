@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 const corsOptions = {
     origin: '*',
@@ -17,9 +17,11 @@ const corsOptions = {
 //rest
 const index = require('./server/rest/index');
 const pizza = require('./server/rest/pizza');
+const user = require('./server/rest/user');
 
 app.use('/api', cors(corsOptions), index);
 app.use('/api/pizza', cors(corsOptions), pizza);
+app.use('/api/user', cors(corsOptions), user);
 
 app.get('*', (req, res) => res.status(200).send({
     message: 'Welcome to the beginning of nothingness.',
